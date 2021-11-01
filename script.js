@@ -103,6 +103,7 @@ class Console {
 
     this.promptInput.addEventListener("keyup", (e) => {
       if (e.key === "Enter" || e.keyCode === 13) {
+        ConsolePrinter.printCopyOfPrompt(this, this.promptInput.value);
         this.doCommand(this.promptInput.value);
 
         // scroll to bottom of page
@@ -162,7 +163,6 @@ class Console {
       },
     };
 
-    ConsolePrinter.printCopyOfPrompt(this, command);
     if (COMMANDS[command] != undefined) {
       COMMANDS[command]();
     } else {
@@ -223,3 +223,5 @@ let my_console = new Console(
     },
   ]
 );
+
+my_console.doCommand("help");
